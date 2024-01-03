@@ -1,24 +1,37 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Article } from '../../services/interfaces/Article';
 import './AddArticlePage.css';
 
-export default function AddArticlePage() {
+interface PropForm {
+    handleSubmitArticle: (article:Article) => void;
+}
 
+export default function AddArticlePage(props: PropForm) {
+    
 
-    const [form, setForm] = useState<Article>({
+    const { handleSubmitArticle } = props;
+
+    const [formData, setFormData] = useState<Article>({
         author: "",
         title: "",
         description: "",
     })
 
+    const navigate = useNavigate();
+
     function handleSubmit(evt: any) {
         evt.preventDefault();
-        console.log("HandleSubmit : ", form)
+        console.log("HandleSubmit : ", formData)
+
+        handleSubmitArticle(formData);
+
+        navigate('/blog');
     }
 
     function handleChange(evt: any) {
         const { name, value } = evt.target;
-        setForm({ ...form, [name]: value })
+        setFormData({ ...formData, [name]: value })
     }
 
 
