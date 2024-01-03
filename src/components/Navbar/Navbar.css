@@ -1,0 +1,13 @@
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+.activeLink {
+    color: #535bf2;
+}

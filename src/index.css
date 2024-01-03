@@ -9,6 +9,7 @@
 }
 
 a {
+  color: rgba(255, 255, 255, 0.87);
   text-decoration: none;
 }
 
@@ -18,10 +19,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 @media (prefers-color-scheme: light) {
