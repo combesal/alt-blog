@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Article } from '../../services/interfaces/Article';
 import './AddArticlePage.css';
@@ -9,8 +9,9 @@ interface PropForm {
 
 export default function AddArticlePage(props: PropForm) {
     
-
     const { handleSubmitArticle } = props;
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState<Article>({
         author: "",
@@ -18,9 +19,7 @@ export default function AddArticlePage(props: PropForm) {
         description: "",
     })
 
-    const navigate = useNavigate();
-
-    function handleSubmit(evt: any) {
+    function handleSubmit(evt: FormEvent<HTMLFormElement>) {
         evt.preventDefault();
         console.log("HandleSubmit : ", formData)
 
@@ -29,7 +28,7 @@ export default function AddArticlePage(props: PropForm) {
         navigate('/blog');
     }
 
-    function handleChange(evt: any) {
+    function handleChange(evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) {
         const { name, value } = evt.target;
         setFormData({ ...formData, [name]: value })
     }
@@ -49,7 +48,7 @@ export default function AddArticlePage(props: PropForm) {
                     onChange={(evt) => handleChange(evt)}
                 />
 
-                <label htmlFor="title">Titre:</label>
+                <label htmlFor="title">Titre</label>
 
                 <input
                     type="text"
