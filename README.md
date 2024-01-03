@@ -1,30 +1,31 @@
-# React + TypeScript + Vite
+# React TP - Alt Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+L’objectif est de créer un web composer de 3 pages.
+Accueil | Blog | Ajouter un article
 
-Currently, two official plugins are available:
+# Page d’accueil
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Nous avons besoin d’une boite de réception, d’un formulaire de contact et du dernier article posté. 
+Ceci n’est qu’un exercice mais ce que nous voulons c’est que lorsque nous soumettons le formulaire de “Nous contacter”, la liste de la boite de réception doit incrémenté avec le nouveau message. 
+La liste de la boite de réception doit afficher les messages du plus récent aux plus vieux.
 
-## Expanding the ESLint configuration
+- Lorsque nous cliquerons sur “voir”, nous voudrions atterrir sur une page qui donnera le détail du message en question
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- La dernier article sera l’article le plus récent qui existe voir ci dessous les pages du blog/ajouter un article
 
-- Configure the top-level `parserOptions` property like this:
+# Le blog
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Le blog est simplement la liste de tous les articles créés (du plus récent aux plus vieux)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Ajouter un article
+
+- Ici c’est le formulaire pour créer un article.
+
+- Il devra naturellement alimenter la liste de la page de blog
+
+
+
+## Info
+
+*Pour les images, une seule suffit stocké en dur / ou un url récupéré du web.*
+*Nous souhaiterions stocker également les éléments de messages + article dans notre localstorage*
