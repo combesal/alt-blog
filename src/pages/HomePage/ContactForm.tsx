@@ -1,15 +1,15 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Message } from "../../services/interfaces/Message";
+import { MessageI } from "../../services/interfaces/MessageI";
 
 interface MessageProp {
-    handleSubmitMessage: (message: Message) => void;
+    handleSubmitMessage: (message: MessageI) => void;
 }
 
 export default function ContactForm(props: MessageProp) {
 
     const { handleSubmitMessage } = props;
 
-    const [formData, setFormData] = useState<Message>({
+    const [formData, setFormData] = useState<MessageI>({
         name: "",
         subject: "",
         content: "",
@@ -25,23 +25,25 @@ export default function ContactForm(props: MessageProp) {
         console.log("HandleSubmit : ", formData);
 
         handleSubmitMessage(formData);
-        
-        resetForm();
-    }
 
-    const resetForm = () => {
-        setFormData({name: "", subject: "", content: ""});
+        // Clear form data after submit
+        setFormData({
+            name: "",
+            subject: "",
+            content: "",
+        });
     }
 
     return (
         <>
-            <form onSubmit={(evt) => handleSubmit(evt)} >
+            <form className="contact" onSubmit={(evt) => handleSubmit(evt)} >
                 <label htmlFor="name">Nom</label>
 
                 <input
                     type="text"
                     name="name"
                     id="name"
+                    value={formData.name}
                     onChange={(evt) => handleChange(evt)}
                 />
 
@@ -51,6 +53,7 @@ export default function ContactForm(props: MessageProp) {
                     type="text"
                     name="subject"
                     id="subject"
+                    value={formData.subject}
                     onChange={(evt) => handleChange(evt)}
                 />
 
@@ -58,6 +61,7 @@ export default function ContactForm(props: MessageProp) {
                 <textarea
                     name="content"
                     id="content"
+                    value={formData.content}
                     onChange={(evt) => handleChange(evt)}
                 ></textarea>
 

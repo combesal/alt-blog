@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Article } from '../../services/interfaces/Article';
+import { ArticleI } from '../../services/interfaces/ArticleI';
 import './AddArticlePage.css';
 
 interface PropForm {
-    handleSubmitArticle: (article:Article) => void;
+    handleSubmitArticle: (article:ArticleI) => void;
 }
 
 export default function AddArticlePage(props: PropForm) {
@@ -13,7 +13,7 @@ export default function AddArticlePage(props: PropForm) {
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<Article>({
+    const [formData, setFormData] = useState<ArticleI>({
         author: "",
         title: "",
         description: "",
@@ -36,9 +36,9 @@ export default function AddArticlePage(props: PropForm) {
 
     return (
         <>
-            <h1>Formulaire pour ajouter un article</h1>
+            <h1>Ajouter un article</h1>
 
-            <form onSubmit={(evt) => handleSubmit(evt)} >
+            <form className="add-article" onSubmit={(evt) => handleSubmit(evt)} >
                 <label htmlFor="author">Nom auteur</label>
 
                 <input

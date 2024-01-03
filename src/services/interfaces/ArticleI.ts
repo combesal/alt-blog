@@ -1,4 +1,4 @@
-export interface Article {
+export interface ArticleI {
     author: string;
     title: string;
     description: string;

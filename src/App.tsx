@@ -1,18 +1,30 @@
 import { Route, Routes } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import HomePage from './pages/HomePage/HomePage'
 import BlogPage from './pages/BlogPage/BlogPage'
 import AddArticlePage from './pages/AddArticlePage/AddArticlePage'
 import Navbar from './components/Navbar/Navbar'
 import NotFoundPage from './services/utils/NotFoundPage'
-import { Article } from './services/interfaces/Article'
+import { ArticleI } from './services/interfaces/ArticleI'
 
 function App() {
 
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<ArticleI[]>(() => {
+    const savedArticles = localStorage.getItem("articles");
+    if(savedArticles) {
+        const articles: ArticleI[] = JSON.parse(savedArticles);
+        return articles;
+    } else {
+        return [];
+    }
+});
 
-  function handleSubmitArticle(article: Article): void {
+useEffect(() => {
+    localStorage.setItem("articles", JSON.stringify(articles));
+  }, [articles]);
+
+  function handleSubmitArticle(article: ArticleI): void {
     setArticles([ article, ...articles]);
   }
 

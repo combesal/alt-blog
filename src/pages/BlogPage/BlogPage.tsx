@@ -1,8 +1,8 @@
-import { Article } from '../../services/interfaces/Article';
+import { ArticleI } from '../../services/interfaces/ArticleI';
 import './BlogPage.css';
 
 interface PropArticle {
-    articles: Article[];
+    articles: ArticleI[];
 }
 
 export default function BlogPage(props: PropArticle) {
@@ -15,7 +15,7 @@ export default function BlogPage(props: PropArticle) {
             <h1>Blog Page</h1>
 
             {articles &&
-                articles.map((article: Article, index: number) => (
+                articles.map((article: ArticleI, index: number) => (
                     <div key={index}>
                         <h2> Auteur : {article.author} </h2>
                         <h2> Titre : {article.title} </h2>

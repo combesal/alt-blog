@@ -1,8 +1,8 @@
-import { Message } from "../../../services/interfaces/Message";
+import { MessageI } from "../../../services/interfaces/MessageI";
 import './Inbox.css';
 
 interface PropMessage {
-    messages: Message[];
+    messages: MessageI[];
 }
 
 export default function Inbox(props: PropMessage) {
@@ -13,7 +13,7 @@ export default function Inbox(props: PropMessage) {
         <>
             <div>
                 {messages &&
-                    messages.map((message: Message, index: number) => (
+                    messages.map((message: MessageI, index: number) => (
                         <div className="message" key={index}>
                             <p> {message.name} - {message.subject} - {message.content} </p> <button>Voir</button>
                         </div>

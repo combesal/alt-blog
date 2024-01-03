@@ -1,4 +1,4 @@
-form {
+form.add-article {
     display:flex;
     flex-direction:column;
     width:50%;
