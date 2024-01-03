@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/Home/HomePage'
 import BlogPage from './pages/Blog/BlogPage'
-import AddArticlePage from './pages/Blog/AddArticlePage'
+import AddArticlePage from './pages/AddArticlePage/AddArticlePage'
 import Navbar from './components/Navbar/Navbar'
 import NotFoundPage from './services/utils/NotFoundPage'
 

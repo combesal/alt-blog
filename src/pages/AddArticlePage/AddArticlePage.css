@@ -1,0 +1,12 @@
+form {
+    display:flex;
+    flex-direction:column;
+    width:50%;
+    margin:auto;
+    gap:7px;
+}
+
+form input[type=submit] {
+    padding: 0.5rem 1rem;
+    align-self: center;
+}
