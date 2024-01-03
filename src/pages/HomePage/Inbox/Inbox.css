@@ -1,0 +1,12 @@
+.message {
+    display: grid;
+    grid-template-columns: 1fr fit-content(60px);
+    gap: 15px;
+    justify-content: space-between;
+    /* max-width: 80%; */
+}
+
+button {
+    padding: 0.5rem 1rem;
+    align-self: center;
+}
