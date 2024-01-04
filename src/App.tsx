@@ -7,6 +7,7 @@ import AddArticlePage from './pages/AddArticlePage/AddArticlePage'
 import Navbar from './components/Navbar/Navbar'
 import NotFoundPage from './services/utils/NotFoundPage'
 import { ArticleI } from './services/interfaces/ArticleI'
+import MessageDetailPage from './pages/HomePage/Inbox/MessageDetailPage'
 
 function App() {
 
@@ -36,6 +37,7 @@ useEffect(() => {
         <Route path="/" element={<HomePage />} > </Route>
         <Route path="/blog" element={<BlogPage articles={articles} />}> </Route>
         <Route path="/add-article" element={<AddArticlePage handleSubmitArticle={handleSubmitArticle} />}> </Route>
+        <Route path="/inbox/:messageId" element={<MessageDetailPage />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

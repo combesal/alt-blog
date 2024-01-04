@@ -14,6 +14,7 @@ export default function AddArticlePage(props: PropForm) {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState<ArticleI>({
+        id: Math.floor(Math.random() * 100),
         author: "",
         title: "",
         description: "",

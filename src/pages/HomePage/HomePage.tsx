@@ -11,6 +11,7 @@ export default function HomePage() {
     let articles: ArticleI[];
 
     let latestArticle: ArticleI = {
+        id: Math.floor(Math.random() * 100),
         author: "",
         title: "",
         description: "",

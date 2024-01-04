@@ -10,6 +10,7 @@ export default function ContactForm(props: MessageProp) {
     const { handleSubmitMessage } = props;
 
     const [formData, setFormData] = useState<MessageI>({
+        id: Math.floor(Math.random() * 100),
         name: "",
         subject: "",
         content: "",
@@ -28,6 +29,7 @@ export default function ContactForm(props: MessageProp) {
 
         // Clear form data after submit
         setFormData({
+            id: Math.floor(Math.random() * 100),
             name: "",
             subject: "",
             content: "",
@@ -47,7 +49,7 @@ export default function ContactForm(props: MessageProp) {
                     onChange={(evt) => handleChange(evt)}
                 />
 
-                <label htmlFor="subject">Subject</label>
+                <label htmlFor="subject">Sujet</label>
 
                 <input
                     type="text"
