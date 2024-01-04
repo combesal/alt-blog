@@ -18,7 +18,8 @@ export default function AddArticlePage(props: PropForm) {
         author: "",
         title: "",
         description: "",
-        image: "https://images.pexels.com/photos/4627679/pexels-photo-4627679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        image: "https://images.pexels.com/photos/4627679/pexels-photo-4627679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        date: new Date(),
     })
 
     function handleSubmit(evt: FormEvent<HTMLFormElement>) {

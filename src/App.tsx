@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import './App.css'
-import HomePage from './pages/HomePage/HomePage'
-import BlogPage from './pages/BlogPage/BlogPage'
-import AddArticlePage from './pages/AddArticlePage/AddArticlePage'
+import HomePage from './pages/Home/HomePage'
+import BlogPage from './pages/Blog/BlogPage'
+import AddArticlePage from './pages/AddArticle/AddArticlePage'
 import Navbar from './components/Navbar/Navbar'
 import NotFoundPage from './services/utils/NotFoundPage'
 import { ArticleI } from './services/interfaces/ArticleI'
-import MessageDetailPage from './pages/HomePage/Inbox/MessageDetailPage'
+import MessageDetailPage from './pages/Home/Inbox/MessageDetailPage'
 
 function App() {
 

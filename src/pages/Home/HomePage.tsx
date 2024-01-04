@@ -16,6 +16,7 @@ export default function HomePage() {
         title: "",
         description: "",
         image: "",
+        date: new Date(),
     };
 
     if (storedArticles) {
@@ -54,15 +55,19 @@ export default function HomePage() {
                 <ContactForm handleSubmitMessage={handleSubmitMessage} />
             </div>
 
-            <h2>Le dernier article</h2>
+            {latestArticle &&
+                <>
+                    <h2>Le dernier article</h2>
 
-            <div className="article">
-                <img height={200} src={latestArticle.image} alt="" />
-                <div>
-                    <h3>{latestArticle.title}</h3>
-                    <p>{latestArticle.description}</p>
-                </div>
-            </div>
+                    <div className="article">
+                        <img height={200} src={latestArticle.image} alt="" />
+                        <div>
+                            <h3>{latestArticle.title}</h3>
+                            <p>{latestArticle.description}</p>
+                        </div>
+                    </div>
+                </>
+            }
         </>
     )
 }

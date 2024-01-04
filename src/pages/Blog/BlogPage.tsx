@@ -19,7 +19,8 @@ export default function BlogPage(props: PropArticle) {
                     <div className='article' key={index}>
                         <img height={200} src={article.image} alt="" />
                         <div>
-                            <h2>{article.title} </h2>
+                            <h2>{article.title}</h2>
+                            
                             <p> {article.description} </p>
                         </div>
                     </div>
