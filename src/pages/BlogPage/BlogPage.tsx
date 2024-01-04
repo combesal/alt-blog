@@ -16,10 +16,12 @@ export default function BlogPage(props: PropArticle) {
 
             {articles &&
                 articles.map((article: ArticleI, index: number) => (
-                    <div key={index}>
-                        <h2> Auteur : {article.author} </h2>
-                        <h2> Titre : {article.title} </h2>
-                        <h2> Message : {article.description} </h2>
+                    <div className='article' key={index}>
+                        <img height={200} src={article.image} alt="" />
+                        <div>
+                            <h2>{article.title} </h2>
+                            <p> {article.description} </p>
+                        </div>
                     </div>
                 ))
             }

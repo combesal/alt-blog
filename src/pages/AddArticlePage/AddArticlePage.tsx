@@ -4,11 +4,11 @@ import { ArticleI } from '../../services/interfaces/ArticleI';
 import './AddArticlePage.css';
 
 interface PropForm {
-    handleSubmitArticle: (article:ArticleI) => void;
+    handleSubmitArticle: (article: ArticleI) => void;
 }
 
 export default function AddArticlePage(props: PropForm) {
-    
+
     const { handleSubmitArticle } = props;
 
     const navigate = useNavigate();
@@ -17,6 +17,7 @@ export default function AddArticlePage(props: PropForm) {
         author: "",
         title: "",
         description: "",
+        image: "https://images.pexels.com/photos/4627679/pexels-photo-4627679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     })
 
     function handleSubmit(evt: FormEvent<HTMLFormElement>) {
