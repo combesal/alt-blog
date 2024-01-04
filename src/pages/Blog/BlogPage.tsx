@@ -15,7 +15,10 @@ export default function BlogPage(props: PropArticle) {
             <h1>Blog Page</h1>
 
             {articles &&
-                articles.map((article: ArticleI, index: number) => {
+                articles
+                .slice()
+                .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                .map((article: ArticleI, index: number) => {
                     const articleDate = new Date(article.date);
 
                     return (

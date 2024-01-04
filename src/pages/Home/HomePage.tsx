@@ -21,6 +21,9 @@ export default function HomePage() {
 
     if (storedArticles) {
         articles = JSON.parse(storedArticles);
+
+        articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        
         latestArticle = articles![0];
         useEffect(() => {
             localStorage.setItem("latestArticle", JSON.stringify(latestArticle));
@@ -65,7 +68,7 @@ export default function HomePage() {
                     <div className="article">
                         <img height={200} src={latestArticle.image} alt="" />
                         <div>
-                            <h3>{latestArticle.title} - {articleDate?.toLocaleString("fr-FR", {"dateStyle": "full", "timeStyle": "medium"})}</h3>
+                            <h3>{latestArticle.title} - {articleDate?.toLocaleString("fr-FR", { "dateStyle": "full", "timeStyle": "medium" })}</h3>
                             <p>{latestArticle.description}</p>
                         </div>
                     </div>

@@ -14,15 +14,19 @@ export default function Inbox(props: PropMessage) {
 
     function handleClickView(id: number): void {
         let message = messages.find(m => m.id === id);
-        
+
         navigate(`/inbox/${id}`, {state: {message}});
     }
+    
 
     return (
         <>
             <div>
                 {messages &&
-                    messages.map((message: MessageI, index: number) => {
+                    messages
+                    .slice()
+                    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                    .map((message: MessageI, index: number) => {
                         const messageDate = new Date(message.date);
 
                         return (
