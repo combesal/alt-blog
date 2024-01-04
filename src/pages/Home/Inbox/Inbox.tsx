@@ -22,12 +22,17 @@ export default function Inbox(props: PropMessage) {
         <>
             <div>
                 {messages &&
-                    messages.map((message: MessageI, index: number) => (
-                        <div className="message" key={index}>
-                            <p> {message.name} - {message.subject} - {message.content} </p> <button onClick={() => handleClickView(message.id)}>Voir</button>
-                        </div>
-                    ))
-                }
+                    messages.map((message: MessageI, index: number) => {
+                        const messageDate = new Date(message.date);
+
+                        return (
+                            <div className="message" key={index}>
+                                <p>{message.name} - {message.subject} - {message.content}</p>
+                                <button onClick={() => handleClickView(message.id)}>Voir</button>
+                                <p>{messageDate.toLocaleString("fr-FR", { "dateStyle": "full", "timeStyle": "medium" })}</p>
+                            </div>
+                        );
+                    })}
             </div>
         </>
     )

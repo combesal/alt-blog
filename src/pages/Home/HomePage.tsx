@@ -27,6 +27,9 @@ export default function HomePage() {
         }, [latestArticle]);
     }
 
+    let articleDate: Date | undefined;
+    latestArticle ? articleDate = new Date(latestArticle.date) : articleDate = undefined;
+
     const [messages, setMessages] = useState<MessageI[]>(() => {
         const savedMessages = localStorage.getItem("messages");
         if (savedMessages) {
@@ -62,7 +65,7 @@ export default function HomePage() {
                     <div className="article">
                         <img height={200} src={latestArticle.image} alt="" />
                         <div>
-                            <h3>{latestArticle.title}</h3>
+                            <h3>{latestArticle.title} - {articleDate?.toLocaleString("fr-FR", {"dateStyle": "full", "timeStyle": "medium"})}</h3>
                             <p>{latestArticle.description}</p>
                         </div>
                     </div>

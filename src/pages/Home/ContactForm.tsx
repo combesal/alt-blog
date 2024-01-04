@@ -14,6 +14,7 @@ export default function ContactForm(props: MessageProp) {
         name: "",
         subject: "",
         content: "",
+        date: new Date(),
     })
 
     function handleChange(evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) {
@@ -33,6 +34,7 @@ export default function ContactForm(props: MessageProp) {
             name: "",
             subject: "",
             content: "",
+            date: new Date(),
         });
     }
 

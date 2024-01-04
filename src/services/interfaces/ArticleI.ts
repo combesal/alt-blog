@@ -4,4 +4,5 @@ export interface ArticleI {
     title: string;
     description: string;
     image: string;
+    date: Date;
 }
