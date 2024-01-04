@@ -7,7 +7,9 @@ import { ArticleI } from '../../services/interfaces/ArticleI';
 
 export default function HomePage() {
 
-    let articleList = localStorage.getItem("articles");
+    let storedArticles: string | null = localStorage.getItem("articles");
+    let articles: ArticleI[];
+
     let latestArticle: ArticleI = {
         author: "",
         title: "",
@@ -15,9 +17,9 @@ export default function HomePage() {
         image: "",
     };
 
-    if (articleList) {
-        articleList = JSON.parse(articleList);
-        latestArticle = articleList![0]; // ERROR : Type 'string' is not assignable to type 'ArticleI'
+    if (storedArticles) {
+        articles = JSON.parse(storedArticles);
+        latestArticle = articles![0];
         useEffect(() => {
             localStorage.setItem("latestArticle", JSON.stringify(latestArticle));
         }, [latestArticle]);
