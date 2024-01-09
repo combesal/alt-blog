@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './HomePage.css';
 import ContactForm from './ContactForm';
 import Inbox from './Inbox/Inbox';
@@ -7,47 +7,19 @@ import { ArticleI } from '../../services/interfaces/ArticleI';
 
 export default function HomePage() {
 
-    let storedArticles: string | null = localStorage.getItem("articles");
-    let articles: ArticleI[];
+    const [messages, setMessages] = useState<MessageI[]>([]);
+    let storedMessages = JSON.parse(localStorage.getItem("messages") || "[]");
 
-    let latestArticle: ArticleI = {
-        id: Math.floor(Math.random() * 100),
-        author: "",
-        title: "",
-        description: "",
-        image: "",
-        date: new Date(),
-    };
+    let articles: ArticleI[] = sortArticlesByDate(JSON.parse(localStorage.getItem("articles") || "[]"));
 
-    if (storedArticles) {
-        articles = JSON.parse(storedArticles);
-
-        articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        
-        latestArticle = articles![0];
-        useEffect(() => {
-            localStorage.setItem("latestArticle", JSON.stringify(latestArticle));
-        }, [latestArticle]);
+    function sortArticlesByDate(articles: ArticleI[]) {
+        return articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     }
 
-    let articleDate: Date | undefined;
-    latestArticle ? articleDate = new Date(latestArticle.date) : articleDate = undefined;
-
-    const [messages, setMessages] = useState<MessageI[]>(() => {
-        const savedMessages = localStorage.getItem("messages");
-        if (savedMessages) {
-            const allMessages: MessageI[] = JSON.parse(savedMessages);
-            return allMessages;
-        } else {
-            return [];
-        }
-    });
-
-    useEffect(() => {
-        localStorage.setItem("messages", JSON.stringify(messages));
-    }, [messages]);
-
     function handleSubmitMessage(message: MessageI): void {
+        storedMessages.push(message);
+        localStorage.setItem("messages", JSON.stringify(storedMessages));
+
         setMessages([message, ...messages]);
     }
 
@@ -56,20 +28,20 @@ export default function HomePage() {
             <h1>Alt Blog</h1>
 
             <div className="contact-container">
-                <Inbox messages={messages} />
+                <Inbox messages={storedMessages} />
 
                 <ContactForm handleSubmitMessage={handleSubmitMessage} />
             </div>
 
-            {latestArticle &&
+            {articles[0] &&
                 <>
                     <h2>Le dernier article</h2>
 
                     <div className="article">
-                        <img height={200} src={latestArticle.image} alt="" />
+                        <img height={200} src={articles[0].image} alt="" />
                         <div>
-                            <h3>{latestArticle.title} - {articleDate?.toLocaleString("fr-FR", { "dateStyle": "full", "timeStyle": "medium" })}</h3>
-                            <p>{latestArticle.description}</p>
+                            <h3>{articles[0].title} - {new Date(articles[0].date)?.toLocaleString("fr-FR", { "dateStyle": "full", "timeStyle": "medium" })}</h3>
+                            <p>{articles[0].description}</p>
                         </div>
                     </div>
                 </>

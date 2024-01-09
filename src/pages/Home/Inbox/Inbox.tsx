@@ -24,7 +24,6 @@ export default function Inbox(props: PropMessage) {
             <div>
                 {messages &&
                     messages
-                    .slice()
                     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
                     .map((message: MessageI, index: number) => {
                         const messageDate = new Date(message.date);

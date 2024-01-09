@@ -26,6 +26,7 @@ export default function AddArticlePage(props: PropForm) {
         evt.preventDefault();
         console.log("HandleSubmit : ", formData)
 
+        setFormData({ ...formData, date: new Date() });
         handleSubmitArticle(formData);
 
         navigate('/blog');
