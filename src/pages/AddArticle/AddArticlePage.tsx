@@ -1,5 +1,6 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 import { ArticleI } from '../../services/interfaces/ArticleI';
 import './AddArticlePage.css';
 
@@ -13,44 +14,47 @@ export default function AddArticlePage(props: PropForm) {
 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState<ArticleI>({
+    const article = {
         id: Math.floor(Math.random() * 100),
         author: "",
         title: "",
         description: "",
         image: "https://images.pexels.com/photos/4627679/pexels-photo-4627679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         date: new Date(),
-    })
+    };
 
-    function handleSubmit(evt: FormEvent<HTMLFormElement>) {
-        evt.preventDefault();
-        console.log("HandleSubmit : ", formData)
+    const articleSchema = Yup.object({
+        author: Yup.string()
+            .required("L'auteur est obligatoire"),
+        title: Yup.string().required("Le titre est obligatoire"),
+        description: Yup.string().required("La description est obligatoire"),
+    });
 
-        setFormData({ ...formData, date: new Date() });
-        handleSubmitArticle(formData);
-
-        navigate('/blog');
-    }
-
-    function handleChange(evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) {
-        const { name, value } = evt.target;
-        setFormData({ ...formData, [name]: value })
-    }
-
+    const { handleSubmit, handleChange, values, errors } = useFormik({
+        initialValues: article,
+        validationSchema: articleSchema,
+        onSubmit: (values) => {
+            console.log(values);
+            handleSubmitArticle(values);
+            navigate('/blog');
+        },
+    });
 
     return (
         <>
             <h1>Ajouter un article</h1>
 
-            <form className="add-article" onSubmit={(evt) => handleSubmit(evt)} >
+            <form className="add-article" onSubmit={handleSubmit} >
                 <label htmlFor="author">Nom auteur</label>
 
                 <input
                     type="text"
                     name="author"
                     id="author"
-                    onChange={(evt) => handleChange(evt)}
+                    onChange={handleChange}
+                    value={values.author}
                 />
+                {errors.author && <small>{errors.author}</small>}
 
                 <label htmlFor="title">Titre</label>
 
@@ -58,15 +62,19 @@ export default function AddArticlePage(props: PropForm) {
                     type="text"
                     name="title"
                     id="title"
-                    onChange={(evt) => handleChange(evt)}
+                    onChange={handleChange}
+                    value={values.title}
                 />
+                {errors.title && <small>{errors.title}</small>}
 
                 <label htmlFor="description">Description</label>
                 <textarea
                     name="description"
                     id="description"
-                    onChange={(evt) => handleChange(evt)}
+                    onChange={handleChange}
+                    value={values.description}
                 ></textarea>
+                {errors.description && <small>{errors.description}</small>}
 
                 <input
                     type="submit"
